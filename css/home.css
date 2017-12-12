@@ -1,0 +1,80 @@
+body{
+    min-height: 100vh;
+}
+.container{
+    top: 80px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+#startPos{
+    line-height: 34px;
+    font-size: 25px;
+    display: inline-block;
+}
+#select span{
+    display: inline-block;
+    font-size: 20px;
+    color: #23262e;
+    font-weight: lighter;
+}
+.flatpickr-input {
+    cursor: pointer;
+    z-index: 1;
+    height: 52px;
+    border-radius: 2px;
+    border: 1px solid #D6D6D6;
+    text-align: center;
+    width: 100%;
+}
+.getIt{
+    height: 90px;
+}
+#getIt{
+    display: inline-block;
+    line-height: 52px;
+    margin: auto;
+    width: 100%;
+    border-radius: 2px;
+    background: #009688;
+    color: white;
+    border: none;
+    position: relative;
+    margin-top: 27px;
+}
+.row{
+    width:90%;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+} 
+.row:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+#proSearch{
+    display: block;
+    height: 26px;
+    width: 26px;
+    line-height: 52px;
+    margin: auto;
+    margin-top: 16px;
+    border:1px solid #D6D6D6;
+}
+.layui-form-switch {
+    position: relative;
+    height: 22px;
+    line-height: 22px;
+    width: 55px;
+    height: 25px;
+    padding: 0 5px;
+    margin-top: 8px;
+    border: 1px solid #d2d2d2;
+    border-radius: 20px;
+    cursor: pointer;
+    -webkit-transition: .1s linear;
+    transition: .1s linear;
+}
+#normalSearch{
+    width: 100%;
+}

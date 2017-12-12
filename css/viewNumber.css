@@ -1,0 +1,18 @@
+.layui-body{
+ background: #282537;
+ background-image: -webkit-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+ background-image: -moz-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+ background-image: -o-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+ background-image: radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+}
+.layui-layout-admin .layui-footer {
+    position: fixed;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    color: #d4caca;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 15px;
+    background-color: #2f2d40;
+}
