@@ -15,7 +15,8 @@ var app=new Vue({
             return localStorage.getItem('queryTickets_id')||'admin';
         },
         station:station,
-        check:false
+        check:false,
+        checkMiddle:''
     },
     
     

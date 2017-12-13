@@ -34,7 +34,7 @@
             </ul>
             <!-- 查询 -->
             <div class="container" id="select">
-                <div class="row text-center">
+                <div class="row text-center" id="firstPart">
                     <div class="col-xs-3">
                         <span>出发站</span>
                         <select class="demo-4" id="startPos">
@@ -62,17 +62,22 @@
                     </div>
                     <div v-show="check">
                             <form class="layui-form" action="">
-                            <div class="layui-form-item">
+                            <div class="layui-form-item" onclick="toggleMiddle()">
                                     <div class="layui-input-block">
-                                        <div class="col-xs-4">
-                                      <input type="radio" name="proSearch" value="zdlj" title="最短路径">
+                                        <div class="col-xs-3">
+                                      <input type="radio" name="proSearch" value="zdlj" title="最短路径" id="nearestWay">
                                     </div>
-                                    <div class="col-xs-4">
-                                      <input type="radio" name="proSearch" value="zdfy" title="最低费用">
+                                    <div class="col-xs-3">
+                                      <input type="radio" name="proSearch" value="zdfy" title="最低费用" id="cheapestWay">
                                     </div>
-                                    <div class="col-xs-4">
-                                      <input type="radio" name="proSearch" value="zzz" title="中转站">
+                                    <div class="col-xs-3">
+                                      <input type="radio" name="proSearch" value="zzz" title="中转站" id="middleStation">
                                     </div>
+                                    <div class="col-xs-3" id="middlePart" style="display:none">
+                                        <select id="middleStations">
+                                            <option v-for="item in station" :value="item.id">{{item.station}}</option>
+                                        </select>
+                                      </div>
                                     </div>
                             </div>
                             </form>
@@ -89,7 +94,8 @@
             </div>             
             <!-- end -->
           </div>     
-        </div>  
+        </div> 
+        <footer>&copy;&nbsp;Copyright&nbsp;2017&nbsp;QueryTickets.Powered&nbsp;by&nbsp;J2EESaltyFishes.</footer>
         <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script src="./js/select-mania.min.js"></script>
         <script src="./js/vue.js"></script>
@@ -106,6 +112,7 @@
                     size: 'large', 
                     removable: true,
                 });
+
         
                 //JavaScript代码区域
                 layui.use('table', function(){
@@ -147,6 +154,5 @@
 });
                 $(".flatpickr").flatpickr();
                 </script>
-        </body>
 </body>
 </html>

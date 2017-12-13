@@ -12,9 +12,9 @@ body{
     font-size: 25px;
     display: inline-block;
 }
-#select span{
+#firstPart span{
     display: inline-block;
-    font-size: 20px;
+    font-size: 18px;
     color: #23262e;
     font-weight: lighter;
 }
@@ -43,7 +43,7 @@ body{
     margin-top: 27px;
 }
 .row{
-    width:90%;
+    width:95%;
     margin: auto;
     background: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -77,4 +77,14 @@ body{
 }
 #normalSearch{
     width: 100%;
+}
+footer{
+    color:#fff;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    background: rgba(0, 0, 0, .8);
+    padding: 5px;
+    font-size: 12px;
 }
