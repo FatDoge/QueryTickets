@@ -93,10 +93,16 @@ function getIt(){
 });
         }else if($('input:radio[name="proSearch"]:checked').val()==='zzz'){
             var middleStation=$("#middleStations").val();
-            if(middleStation===startPos||middleStation===endPos){
+            if(middleStation===startPos){
                 layui.use('layer', function(){
   var layer = layui.layer;
-  layer.msg('中转站不能与出发地目的地相同！');
+  layer.msg('中转站不能与出发地相同！');
+});
+                return false;
+            }else if(middleStation===endPos){
+                layui.use('layer', function(){
+  var layer = layui.layer;
+  layer.msg('中转站不能与目的地相同！');
 });
                 return false;
             }else{
