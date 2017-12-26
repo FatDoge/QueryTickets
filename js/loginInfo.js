@@ -11,25 +11,25 @@ function login(){
 	}
 	else
 	// 登录
-	$.post("http://e.hduzjh.cn/QueryTickets/loginconfirm",
-		{
-			"username":stuId,
-			"password":stuPwd,
-			"dataType": 'jsonp',
-		},function(result){
-			// ret判断
-			if(result.status!=200){
-				layer.msg('用户名或密码错误!');
-			}else{
-				//插入数据并跳转
-				localStorage.setItem('queryTickets_id',result.data.name);
-				switch(result.data.type){
-					case 0:
-					window.location='./home.html';
-					break;
-					case 1:
-					window.location='./admin.html';
-				}			
-			}
-  });
-}
+	$.ajax({
+	url:"http://e.hduzjh.cn/QueryTickets/loginconfirm",
+	data:{
+		"username":stuId,
+		"password":stuPwd,
+	},
+	success:function(result){
+		if(result.status!=200){
+			layer.msg('用户名或密码错误!');
+		}else{
+			//插入数据并跳转
+			localStorage.setItem('queryTickets_id',result.data.name);
+			switch(result.data.type){
+				case 0:
+				window.location='./home.html';
+				break;
+				case 1:
+				window.location='./admin.html';
+			}			
+		}
+	}}
+)}		

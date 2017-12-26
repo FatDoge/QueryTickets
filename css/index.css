@@ -218,3 +218,6 @@ body {
 a:hover{
   text-decoration-line: none;
 }
+.layui-form{
+  background: whitesmoke
+}

@@ -27,7 +27,7 @@ function getIt(){
                 'http://e.hduzjh.cn/QueryTickets/stationQuery',
                 {'startStation':startPos,
                 'endStation':endPos,
-                'orderBy':'aaa',
+                'orderBy':'startTime',
                 'async':false,
                 },
                 function(result){
