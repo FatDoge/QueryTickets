@@ -13,6 +13,8 @@
     <script src="./js/loginInfo.js"></script>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/station.css">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
     <body class="layui-layout-body">
         <div class="layui-layout layui-layout-admin" id="app">
@@ -33,23 +35,34 @@
             <div class="layui-side-scroll">
               <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
               <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                  <a class="" href="javascript:;">用户管理</a>
-                </li>
                 <li class="layui-nav-item">
+                  <a class="" href="./user.html">用户管理</a>
+                </li>
+                <li class="layui-nav-item  layui-nav-itemed">
                   <a href="javascript:;">站点管理</a>
                 </li>
-                <li class="layui-nav-item"><a href="">车次管理</a></li>
+                <li class="layui-nav-item"><a href="./distance.html">距离管理</a></li>
+                <li class="layui-nav-item"><a href="./train.html">车次管理</a></li>
               </ul>
             </div>
           </div>
           
-          <div class="layui-body">
+          <div class="layui-body" id="adminStation">
             <!-- 内容主体区域 -->
+            <div class="row text-center">
+              <div class="col-xs-4" v-for="station in station">
+                <div class="stationItem" onclick="ShowElement(this)" v-bind:data-id='station.id' title="单击修改">
+                  {{station.station}}
+                </div>
+                <span>
+                  <i class="fa fa-times deleteStation" onclick="deleteIt(this)" v-bind:data-delId='station.id' title="删除该站"></i>
+                </span>
+              </div>
+            </div>
                    <!-- 按钮 -->
 <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
   <li class="mfb-component__wrap">
-    <a href="javascript:addUser()" class="mfb-component__button--main" data-mfb-label="添加用户">
+    <a href="javascript:addStation()" class="mfb-component__button--main" data-mfb-label="添加站点">
       <i class="mfb-component__main-icon--resting ion-plus-round"></i>
       <i class="mfb-component__main-icon--active ion-close-round"></i>
     </a>
@@ -58,9 +71,6 @@
             <div class="col-xs-12 text-center">
               <table id="demo" lay-filter="demo"></table>
       </div>
-      <script type="text/html" id="barDemo">
-          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-        </script>
             <!-- 结束 -->
           </div>
           
@@ -69,13 +79,12 @@
             &copy;&nbsp;Copyright&nbsp;2017&nbsp;QueryTickets.Powered&nbsp;by&nbsp;J2EESaltyFishes.
           </div>
         </div>
-        <script src="./js/adminUser.js"></script>
         <script>
         //JavaScript代码区域
         layui.use('element', function(){
           var element = layui.element;
         });
-        showInfo();
+        //showInfo();
         layui.use('table', function(){
           var table = layui.table;
           
@@ -85,7 +94,7 @@
             ,data = obj.data //得到所在行所有键值
             ,field = obj.field; //得到字段
             // 请求后台api修改用户信息
-            submitChangeUserInfo(data);
+            //submitChangeUserInfo(data);
           });
         });
 //注意：导航 依赖 element 模块，否则无法进行功能性操作     
@@ -96,6 +105,7 @@
         <script src="./js/mfb.min.js"></script>
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="./css/adminUser.css">
+        <script src="./js/adminStation.js"></script>
         
 <div id="addUserInfo" hidden>
   <div class="container text-center" style="width:360px">

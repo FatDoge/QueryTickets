@@ -28,7 +28,7 @@ function login(){
 				window.location='./home.html';
 				break;
 				case 1:
-				window.location='./admin.html';
+				window.location='./user.html';
 			}			
 		}
 	}}

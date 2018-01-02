@@ -7,7 +7,8 @@ html{
 }
 body{
     min-height: 100vh;
-    background: -webkit-linear-gradient(-45deg, #673AB7 0, #3F51B5 25%, #607D8B 50%, #3F51B5 75%, #673AB7 100%);
+    background: url('../images/bg.jpg');
+    background-size: cover;
 }
 .form-horizontal{
     background: #fff;
