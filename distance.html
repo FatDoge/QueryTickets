@@ -1,144 +1,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>QueryTickets</title>
-    <link rel="shortcut icon" href="favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/login.css">
-    <script src="./js/cleaner.js"></script>
-    <script src="./js/layui/layui.js"></script>
-    <link rel="stylesheet" href="./js/layui/css/layui.css">
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/loginInfo.js"></script>
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/station.css">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <title>QueryTickets</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./css/login.css">
+  <script src="./js/cleaner.js"></script>
+  <script src="./js/layui/layui.js"></script>
+  <link rel="stylesheet" href="./js/layui/css/layui.css">
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/loginInfo.js"></script>
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/station.css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-    <body class="layui-layout-body">
-        <div class="layui-layout layui-layout-admin" id="app">
-          <div class="layui-header">
-            <div class="layui-logo">QueryTickets</div>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-right">
-              <li class="layui-nav-item">
-                <a href="javascript:;">
-                  <img src="./images/headlogo/admin.png" class="layui-nav-img">
-                  {{nickname()}}
-                </a>
-              </li>
-              <li class="layui-nav-item"><a href="javascript:cleanData()">登出</a></li>
-            </ul>
-          </div>     
-          <div class="layui-side layui-bg-black">
-            <div class="layui-side-scroll">
-              <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-              <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item">
-                  <a class="" href="./user.html">用户管理</a>
-                </li>
-                <li class="layui-nav-item">
-                  <a href="./station.html">站点管理</a>
-                </li>
-                <li class="layui-nav-item  layui-nav-itemed">
-                    <a href="#">距离管理</a>
-                  </li>
-                <li class="layui-nav-item"><a href="train.html">车次管理</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="layui-body" id="adminStation">
-            <!-- 内容主体区域 -->
-            <div class="col-xs-12 text-center">
-                <table id="demo" lay-filter="demo"></table>
-        </div>
-        <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-          </script>
-                   <!-- 按钮 -->
-<ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
-  <li class="mfb-component__wrap">
-    <a href="javascript:submitDistanceInfo()" class="mfb-component__button--main" data-mfb-label="添加站点">
-      <i class="mfb-component__main-icon--resting ion-plus-round"></i>
-      <i class="mfb-component__main-icon--active ion-close-round"></i>
-    </a>
-  </li>
-</ul> 
-            <div class="col-xs-12 text-center">
-              <table id="distanceTable" lay-filter="distanceTable"></table>
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin" id="app">
+    <div class="layui-header">
+      <div class="layui-logo">QueryTickets</div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="./images/headlogo/admin.png" class="layui-nav-img"> {{nickname()}}
+          </a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:cleanData()">登出</a>
+        </li>
+      </ul>
+    </div>
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="./user.html">用户管理</a>
+          </li>
+          <li class="layui-nav-item">
+            <a href="./station.html">站点管理</a>
+          </li>
+          <li class="layui-nav-item  layui-nav-itemed">
+            <a href="#">距离管理</a>
+          </li>
+          <li class="layui-nav-item">
+            <a href="train.html">车次管理</a>
+          </li>
+        </ul>
       </div>
-            <!-- 结束 -->
-          </div>
-          
-          <div class="layui-footer">
-            <!-- 底部固定区域 -->
-            &copy;&nbsp;Copyright&nbsp;2017&nbsp;QueryTickets.Powered&nbsp;by&nbsp;J2EESaltyFishes.
-          </div>
-          <!-- 弹出层 -->
-          <form class="text-center layui-form" id="pop">
-            <div class="col-xs-12">
-              <span>出发站</span>
-              <select class="layui-form-item" id="startPos">
-                  <option v-for="item in station" :value="item.station">{{item.station}}</option>
-              </select>
-          </div>
-          <div class="col-xs-12">
-              <span>目的站</span>
-              <select class="layui-form-item" id="endPos">
-                  <option v-for="item in station" :value="item.station">{{item.station}}</option>
-              </select>
-          </div>
-        <div class="col-xs-12">
-            <span>距离</span>
-            <input type="text" id="distance" class="layui-input">
-        </div>
-        <div class="col-xs-12">
-          <br><br><br><br><br><br>
-          <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
-        </div>
-      </form>
-        </div>
-        <script src="./js/adminDistance.js"></script>
-        <script>
-          showInfo()
-        //JavaScript代码区域
-        layui.use('element', function(){
-          var element = layui.element;
-        });
-        layui.use('form', function(){
-  var form = layui.form;
-  
-  //监听提交
-  form.on('submit(formDemo)', function(){
-    submitAddInfo();
-    return false;
-  });
-});
-        //showInfo();
-        layui.use('table', function(){
-          var table = layui.table;
-          
-          //监听单元格编辑
-          table.on('edit(distanceTable)', function(obj){
-            var value = obj.value //得到修改后的值
-            ,data = obj.data //得到所在行所有键值
-            ,field = obj.field; //得到字段
-            // 请求后台api修改用户信息
-            updateDistance(data.id,data.distance);
-          });
-        });
-//注意：导航 依赖 element 模块，否则无法进行功能性操作     
-        </script>
-        <script src="./js/vue.js"></script>
-        <script src="./js/nickname.js"></script>
-        <link rel="stylesheet" href="./css/mfb.min.css">
-        <script src="./js/mfb.min.js"></script>
-        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="./css/adminDistance.css">
-        
-        
+    </div>
+    <div class="layui-body" id="adminStation">
+      <!-- 内容主体区域 -->
+      <div class="col-xs-12 text-center">
+        <table id="demo" lay-filter="demo"></table>
+      </div>
+      <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+      </script>
+      <!-- 按钮 -->
+      <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
+        <li class="mfb-component__wrap">
+          <a href="javascript:submitDistanceInfo()" class="mfb-component__button--main" data-mfb-label="添加站点">
+            <i class="mfb-component__main-icon--resting ion-plus-round"></i>
+            <i class="mfb-component__main-icon--active ion-close-round"></i>
+          </a>
+        </li>
+      </ul>
+      <div class="col-xs-12 text-center">
+        <table id="distanceTable" lay-filter="distanceTable"></table>
+      </div>
+      <!-- 结束 -->
+    </div>
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      &copy;&nbsp;Copyright&nbsp;2017&nbsp;QueryTickets.Powered&nbsp;by&nbsp;J2EESaltyFishes.
+    </div>
+    <!-- 弹出层 -->
+    <form class="text-center layui-form" id="pop">
+      <div class="col-xs-12">
+        <span>出发站</span>
+        <select class="layui-form-item" id="startPos">
+          <option v-for="item in station" :value="item.station">{{item.station}}</option>
+        </select>
+      </div>
+      <div class="col-xs-12">
+        <span>目的站</span>
+        <select class="layui-form-item" id="endPos">
+          <option v-for="item in station" :value="item.station">{{item.station}}</option>
+        </select>
+      </div>
+      <div class="col-xs-12">
+        <span>距离</span>
+        <input type="text" id="distance" class="layui-input">
+      </div>
+      <div class="col-xs-12">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+      </div>
+    </form>
+  </div>
+  <script src="./js/adminDistance.js"></script>
+  <script>
+    showInfo()
+    //JavaScript代码区域
+    layui.use('element', function () {
+      var element = layui.element;
+    });
+    layui.use('form', function () {
+      var form = layui.form;
+
+      //监听提交
+      form.on('submit(formDemo)', function () {
+        submitAddInfo();
+        return false;
+      });
+    });
+    //showInfo();
+    layui.use('table', function () {
+      var table = layui.table;
+
+      //监听单元格编辑
+      table.on('edit(distanceTable)', function (obj) {
+        var value = obj.value //得到修改后的值
+          ,
+          data = obj.data //得到所在行所有键值
+          ,
+          field = obj.field; //得到字段
+        // 请求后台api修改用户信息
+        updateDistance(data.id, data.distance);
+      });
+    });
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+  </script>
+  <script src="./js/vue.js"></script>
+  <script src="./js/nickname.js"></script>
+  <link rel="stylesheet" href="./css/mfb.min.css">
+  <script src="./js/mfb.min.js"></script>
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="./css/adminDistance.css">
   <!-- END -->
 </body>
 </html>

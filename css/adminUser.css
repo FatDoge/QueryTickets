@@ -1,16 +1,19 @@
-#addUserInfo row{
+#addUserInfo row {
     height: 40px;
 }
-#addUserInfo button{
+
+#addUserInfo button {
     border-radius: 0;
-    border:none;
+    border: none;
     padding-bottom: 5px;
 }
-#changeUserInfo row{
+
+#changeUserInfo row {
     height: 40px;
 }
-#changeUserInfo button{
+
+#changeUserInfo button {
     border-radius: 0;
-    border:none;
+    border: none;
     padding-bottom: 5px;
 }

@@ -1,4 +1,4 @@
-function cleanData(){
+function cleanData() {
 	localStorage.removeItem("queryTickets_id");
-	window.location='./login.html'
+	window.location = './login.html'
 }

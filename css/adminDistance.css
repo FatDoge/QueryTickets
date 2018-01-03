@@ -1,8 +1,9 @@
-#pop span{
+#pop span {
     display: inline-block;
     font-size: 18px;
     margin: 10px 0;
 }
-#distanceTable{
-    margin-top:70px; 
+
+#distanceTable {
+    margin-top: 70px;
 }

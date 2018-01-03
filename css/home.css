@@ -1,23 +1,27 @@
-body{
+body {
     min-height: 100vh;
 }
-.container{
+
+.container {
     top: 80px;
     position: absolute;
     width: 100%;
     text-align: center;
 }
-#startPos{
+
+#startPos {
     line-height: 34px;
     font-size: 25px;
     display: inline-block;
 }
-#firstPart span{
+
+#firstPart span {
     display: inline-block;
     font-size: 18px;
     color: #23262e;
     font-weight: lighter;
 }
+
 .flatpickr-input {
     cursor: pointer;
     z-index: 1;
@@ -27,10 +31,12 @@ body{
     text-align: center;
     width: 100%;
 }
-.getIt{
+
+.getIt {
     height: 90px;
 }
-#getIt{
+
+#getIt {
     display: inline-block;
     line-height: 52px;
     margin: auto;
@@ -42,25 +48,29 @@ body{
     position: relative;
     margin-top: 27px;
 }
-.row{
-    width:95%;
+
+.row {
+    width: 95%;
     margin: auto;
     background: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-} 
-.row:hover{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
-#proSearch{
+
+.row:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#proSearch {
     display: block;
     height: 26px;
     width: 26px;
     line-height: 52px;
     margin: auto;
     margin-top: 16px;
-    border:1px solid #D6D6D6;
+    border: 1px solid #D6D6D6;
 }
+
 .layui-form-switch {
     position: relative;
     height: 22px;
@@ -75,11 +85,13 @@ body{
     -webkit-transition: .1s linear;
     transition: .1s linear;
 }
-#normalSearch{
+
+#normalSearch {
     width: 100%;
 }
-footer{
-    color:#fff;
+
+footer {
+    color: #fff;
     position: absolute;
     width: 100%;
     text-align: center;

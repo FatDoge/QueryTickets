@@ -1,45 +1,50 @@
-.title{
-	font-size: 30px;
-    color: #009688;
-    position: absolute;
-    word-break: keep-all;
-    top: 40%;
-    width: 100%;
-    margin: auto;
+.title {
+  font-size: 30px;
+  color: #009688;
+  position: absolute;
+  word-break: keep-all;
+  top: 40%;
+  width: 100%;
+  margin: auto;
 }
-.layui-body{
- background: #282537;
- background-image: -webkit-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
- background-image: -moz-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
- background-image: -o-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
- background-image: radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+
+.layui-body {
+  background: #282537;
+  background-image: -webkit-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+  background-image: -moz-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+  background-image: -o-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+  background-image: radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
 }
 
 body {
   background-color: #eee;
 }
 
+
 /**
 * Title
 **/
+
 .title {
   text-align: center;
   -webkit-transform: translateY(20px);
-          transform: translateY(20px);
+  transform: translateY(20px);
   font-size: 45px;
   color: coral;
   text-transform: uppercase;
 }
 
+
 /**
 * CARD
 **/
+
 .card {
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0);
-          transform: translateX(-50%) translateY(-50%) translateZ(0);
+  transform: translateX(-50%) translateY(-50%) translateZ(0);
   width: 370px;
   background-color: #fff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -47,6 +52,7 @@ body {
   -webkit-transition: box-shadow 0.5s;
   transition: box-shadow 0.5s;
 }
+
 .card a {
   color: inherit;
   text-decoration: none;
@@ -56,9 +62,11 @@ body {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
 }
 
+
 /**
 * DATE
 **/
+
 .card__date {
   position: absolute;
   top: 20px;
@@ -73,19 +81,23 @@ body {
   font-weight: 700;
   line-height: 13px;
 }
-.card__date img{
+
+.card__date img {
   width: 100px;
-    right: 30px;
-    position: relative;
+  right: 30px;
+  position: relative;
 }
+
 .card__date__month {
   text-transform: uppercase;
   font-size: 10px;
 }
 
+
 /**
 * THUMB
 **/
+
 .card__thumb {
   height: 245px;
   overflow: hidden;
@@ -93,18 +105,20 @@ body {
   -webkit-transition: height 0.5s;
   transition: height 0.5s;
 }
+
 .card__thumb img {
-	width: 370px;
-	height: 245px;
+  width: 370px;
+  height: 245px;
   display: block;
   opacity: 1;
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
   transition: opacity 0.5s, -webkit-transform 0.5s;
   transition: opacity 0.5s, transform 0.5s;
   transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
 }
+
 .card:hover .card__thumb {
   height: 130px;
 }
@@ -112,12 +126,14 @@ body {
 .card:hover .card__thumb img {
   opacity: 0.6;
   -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  transform: scale(1.2);
 }
+
 
 /**
 * BODY
 **/
+
 .card__body {
   position: relative;
   height: 185px;
@@ -125,6 +141,7 @@ body {
   -webkit-transition: height 0.5s;
   transition: height 0.5s;
 }
+
 .card:hover .card__body {
   height: 300px;
 }
@@ -170,20 +187,21 @@ body {
   line-height: 27px;
   opacity: 0;
   -webkit-transform: translateY(45px);
-          transform: translateY(45px);
+  transform: translateY(45px);
   -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
   transition: opacity 0.3s, -webkit-transform 0.3s;
   transition: opacity 0.3s, transform 0.3s;
   transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
   -webkit-transition-delay: 0s;
-          transition-delay: 0s;
+  transition-delay: 0s;
 }
+
 .card:hover .card__description {
   opacity: 1;
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
   -webkit-transition-delay: 0.2s;
-          transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
 .card__footer {
@@ -201,9 +219,11 @@ body {
   margin: -2px 0 0 2px;
   font-size: 18px;
 }
-.icon + .icon {
+
+.icon+.icon {
   padding-left: 10px;
 }
+
 .layui-layout-admin .layui-footer {
   position: fixed;
   left: 200px;
@@ -215,9 +235,11 @@ body {
   padding: 0 15px;
   background-color: #2f2d40;
 }
-a:hover{
+
+a:hover {
   text-decoration-line: none;
 }
-.layui-form{
+
+.layui-form {
   background: whitesmoke
 }

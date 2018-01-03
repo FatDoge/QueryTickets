@@ -16,85 +16,85 @@
 <body>
     <body class="layui-layout-body">
         <div class="layui-layout layui-layout-admin" id="app">
-          <div class="layui-header">
-            <div class="layui-logo">QueryTickets</div>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-right">
-              <li class="layui-nav-item">
-                <a href="javascript:;">
-                  <img src="./images/headlogo/user.png" class="layui-nav-img">
-                  {{nickname()}}
-                </a>
-                <!-- <dl class="layui-nav-child">
+            <div class="layui-header">
+                <div class="layui-logo">QueryTickets</div>
+                <!-- 头部区域（可配合layui已有的水平导航） -->
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <img src="./images/headlogo/user.png" class="layui-nav-img"> {{nickname()}}
+                        </a>
+                        <!-- <dl class="layui-nav-child">
                   <dd><a href="">基本资料</a></dd>
                   <dd><a href="">安全设置</a></dd>
                 </dl> -->
-              </li>
-              <li class="layui-nav-item"><a href="javascript:cleanData()">登出</a></li>
-            </ul>
-            <!-- 查询 -->
-            <div class="container" id="select">
-                <div class="row text-center" id="firstPart">
-                    <div class="col-xs-3">
-                        <span>出发站</span>
-                        <select class="demo-4" id="startPos">
-                            <option v-for="item in station" :value="item.station">{{item.station}}</option>
-                        </select>
-                    </div>
-                    <div class="col-xs-3">
-                        <span>目的站</span>
-                        <select class="demo-4" id="endPos">
-                            <option v-for="item in station" :value="item.station">{{item.station}}</option>
-                        </select>
-                    </div>
-                    <div class="col-xs-2">
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:cleanData()">登出</a>
+                    </li>
+                </ul>
+                <!-- 查询 -->
+                <div class="container" id="select">
+                    <div class="row text-center" id="firstPart">
+                        <div class="col-xs-3">
+                            <span>出发站</span>
+                            <select class="demo-4" id="startPos">
+                                <option v-for="item in station" :value="item.station">{{item.station}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <span>目的站</span>
+                            <select class="demo-4" id="endPos">
+                                <option v-for="item in station" :value="item.station">{{item.station}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-2">
                             <span>日期</span>
-                        <p class="flatpickr" data-wrap="true" data-click-opens="true">
-                            <input placeholder="出发日期" data-input>
-                        </p>
-                    </div>
-                    <div class="col-xs-2">
-                        <span>高级搜索</span>
-                        <input type="checkbox" name="" value="pro" id="proSearch" v-model="check">
-                    </div>
-                    <div class="col-xs-2 getIt">
-                        <button onclick="getIt()" id="getIt">确认</button>
-                    </div>
-                    <div v-show="check">
+                            <p class="flatpickr" data-wrap="true" data-click-opens="true">
+                                <input placeholder="出发日期" data-input>
+                            </p>
+                        </div>
+                        <div class="col-xs-2">
+                            <span>高级搜索</span>
+                            <input type="checkbox" name="" value="pro" id="proSearch" v-model="check">
+                        </div>
+                        <div class="col-xs-2 getIt">
+                            <button onclick="getIt()" id="getIt">确认</button>
+                        </div>
+                        <div v-show="check">
                             <form class="layui-form" action="">
-                            <div class="layui-form-item" onclick="toggleMiddle()">
+                                <div class="layui-form-item" onclick="toggleMiddle()">
                                     <div class="layui-input-block">
                                         <div class="col-xs-3">
-                                      <input type="radio" name="proSearch" value="zdlj" title="最短路径" id="nearestWay">
+                                            <input type="radio" name="proSearch" value="zdlj" title="最短路径" id="nearestWay">
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <input type="radio" name="proSearch" value="zdfy" title="最低费用" id="cheapestWay">
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <input type="radio" name="proSearch" value="zzz" title="中转站" id="middleStation">
+                                        </div>
+                                        <div class="col-xs-3" id="middlePart" style="display:none">
+                                            <select id="middleStations">
+                                                <option value=""></option>
+                                                <option v-for="item in station" :value="item.station">{{item.station}}</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-3">
-                                      <input type="radio" name="proSearch" value="zdfy" title="最低费用" id="cheapestWay">
-                                    </div>
-                                    <div class="col-xs-3">
-                                      <input type="radio" name="proSearch" value="zzz" title="中转站" id="middleStation">
-                                    </div>
-                                    <div class="col-xs-3" id="middlePart" style="display:none">
-                                        <select id="middleStations">
-                                            <option v-for="item in station" :value="item.station">{{item.station}}</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                            </div>
+                                </div>
                             </form>
+                        </div>
                     </div>
-
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <table id="normalSearch" lay-filter="test"></table>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table id="normalSearch" lay-filter="test"></table>
+                        </div>
                     </div>
                 </div>
-                    
-            </div>             
-            <!-- end -->
-          </div>     
-        </div> 
+                <!-- end -->
+            </div>
+        </div>
         <footer>&copy;&nbsp;Copyright&nbsp;2017&nbsp;QueryTickets.Powered&nbsp;by&nbsp;J2EESaltyFishes.</footer>
         <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script src="./js/select-mania.min.js"></script>
@@ -105,31 +105,31 @@
         <script src="./js/layui/layui.js"></script>
         <script src="./js/flatpickr.min.js"></script>
         <script>
-                $('.demo-4').selectMania({
-                    themes: ['green'], 
-                    placeholder: 'Please select me!',
-                    search: true,
-                    size: 'large', 
-                    removable: true,
-                });
+            $('.demo-4').selectMania({
+                themes: ['green'],
+                placeholder: 'Please select me!',
+                search: true,
+                size: 'large',
+                removable: true,
+            });
 
-        
-                //JavaScript代码区域
-               
-                layui.use('element', function(){
-                  var element = layui.element;
-                  
+
+            //JavaScript代码区域
+
+            layui.use('element', function () {
+                var element = layui.element;
+
+            });
+            layui.use('form', function () {
+                var form = layui.form;
+
+                //监听提交
+                form.on('submit(formDemo)', function (data) {
+                    layer.msg(JSON.stringify(data.field));
+                    return false;
                 });
-                layui.use('form', function(){
-  var form = layui.form;
-  
-  //监听提交
-  form.on('submit(formDemo)', function(data){
-    layer.msg(JSON.stringify(data.field));
-    return false;
-  });
-});
-                $(".flatpickr").flatpickr();
-                </script>
-</body>
+            });
+            $(".flatpickr").flatpickr();
+        </script>
+    </body>
 </html>
