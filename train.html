@@ -34,8 +34,8 @@
       <div class="layui-side-scroll">
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
         <ul class="layui-nav layui-nav-tree" lay-filter="test">
-          <li class="layui-nav-item layui-nav-itemed">
-            <a class="" href="javascript:;">用户管理</a>
+          <li class="layui-nav-item">
+            <a href="./user.html">用户管理</a>
           </li>
           <li class="layui-nav-item">
             <a href="./station.html">站点管理</a>
@@ -43,8 +43,8 @@
           <li class="layui-nav-item">
             <a href="./distance.html">距离管理</a>
           </li>
-          <li class="layui-nav-item">
-            <a href="./train.html">列车管理</a>
+          <li class="layui-nav-item layui-nav-itemed">
+            <a href="#">列车管理</a>
           </li>
         </ul>
       </div>
@@ -54,7 +54,7 @@
       <!-- 按钮 -->
       <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
         <li class="mfb-component__wrap">
-          <a href="javascript:addUser()" class="mfb-component__button--main" data-mfb-label="添加用户">
+          <a href="javascript:addTrain()" class="mfb-component__button--main" data-mfb-label="添加列车">
             <i class="mfb-component__main-icon--resting ion-plus-round"></i>
             <i class="mfb-component__main-icon--active ion-close-round"></i>
           </a>
@@ -73,7 +73,7 @@
       &copy;&nbsp;Copyright&nbsp;2017&nbsp;QueryTickets.Powered&nbsp;by&nbsp;J2EESaltyFishes.
     </div>
   </div>
-  <script src="./js/adminUser.js"></script>
+  <script src="./js/adminTrain.js"></script>
   <script>
     //JavaScript代码区域
     layui.use('element', function () {
@@ -90,7 +90,7 @@
           ,
           field = obj.field; //得到字段
         // 请求后台api修改用户信息
-        submitChangeUserInfo(data);
+        submitChangeTrainInfo(data);
       });
     });
     //注意：导航 依赖 element 模块，否则无法进行功能性操作
@@ -101,31 +101,36 @@
   <script src="./js/mfb.min.js"></script>
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="./css/adminUser.css">
-  <div id="addUserInfo" hidden>
+  <div id="addTrainInfo" hidden>
     <div class="container text-left" style="width:360px">
       <div class="row">
-        <div class="col-xs-12">
-          <span>昵称</span>
-          <input type="text" required id="name" class="layui-input">
+        <div class="col-xs-12 text-left">
+          <span>车次号</span>
+          <input type="text" required id="number" class="layui-input">
+          <span>特等座余量</span>
+          <input type="text" required id="specialSeat" class="layui-input">
+          <span>一等座余量</span>
+          <input type="text" required id="firstSeat" class="layui-input">
+          <span>二等座余量</span>
+          <input type="text" required id="secondSeat" class="layui-input">
+          <span>软座余量</span>
+          <input type="text" required id="softSeat" class="layui-input">
+          <span>硬座余量</span>
+          <input type="text" required id="hardSeat" class="layui-input">
+          <span>无座余量</span>
+          <input type="text" required id="noSeat" class="layui-input">
+          <span>高卧余量</span>
+          <input type="text" required id="highSleeper" class="layui-input">
+          <span>软卧余量</span>
+          <input type="text" required id="softSleeper" class="layui-input">
+          <span>硬卧余量</span>
+          <input type="text" required id="hardSleeper" class="layui-input">
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <span>账号</span>
-          <input type="text" required id="username" class="layui-input">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <span>密码</span>
-          <input type="text" required id="password" class="layui-input">
-        </div>
-      </div>
-      <div class="row">
         <div class="col-xs-12 text-right">
-          <button onclick="submitAddUserInfo()" class="layui-btn">确认提交</button>
-        </div>
+            <button onclick="submitAddTrainInfo()" class="layui-btn">确认提交</button>
+          </div>
       </div>
+    </div>
     </div>
     <!-- END -->
 </body>
