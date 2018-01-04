@@ -6,7 +6,8 @@ function middleStationFunc(startPos, endPos, middleStation) {
         data: {
             startStation: startPos,
             endStation: endPos,
-            changeStation: middleStation
+            changeStation: middleStation,
+            order: ''
         },
         success: function (ret) {
             if (ret.status === 200) {
@@ -152,13 +153,15 @@ function middleStationFunc(startPos, endPos, middleStation) {
 // 最短路径
 function nearestFunc(startPos, endPos) {
     $.ajax({
-        url: 'url',
+        url: 'http://e.hduzjh.cn/QueryTickets/changetrainquery',
         data: {
-            startPos: startPos,
-            endPos: endPos,
+            startStation: startPos,
+            endStation: endPos,
+            changeStation: '',
+            order: 'distance'
         },
         success: function (ret) {
-            if (ret.message === 200) {
+            if (ret.status === 200) {
                 var data = ret.data;
                 // 数据处理展示
                 layui.use('table', function () {
@@ -166,9 +169,12 @@ function nearestFunc(startPos, endPos) {
                     //第一个实例
                     var trainInfo = data;
                     for (i = 0; i < trainInfo.length; i++) {
-                        trainInfo[i].startTime = changeTime(trainInfo[i].startTime);
-                        trainInfo[i].endTime = changeTime(trainInfo[i].endTime);
-                        trainInfo[i].timeDifference = changeTime(trainInfo[i].timeDifference);
+                        trainInfo[i].firstStart = changeTime(trainInfo[i].firstStart);
+                        trainInfo[i].firstEnd = changeTime(trainInfo[i].firstEnd);
+                        trainInfo[i].secondStart = changeTime(trainInfo[i].secondStart);
+                        trainInfo[i].secondEnd = changeTime(trainInfo[i].secondEnd);
+                        trainInfo[i].firstTimeDifference = changeTime(trainInfo[i].firstTimeDifference);
+                        trainInfo[i].secondTimeDifference = changeTime(trainInfo[i].secondTimeDifference);
                     }
                     table.render({
                         elem: '#normalSearch',
@@ -176,93 +182,106 @@ function nearestFunc(startPos, endPos) {
                         page: true //开启分页
                             ,
                         cols: [
+                            [{
+                                    align: 'center',
+                                    title: '第一车次',
+                                    colspan: 7
+                                }, {
+                                    field: 'changeStation',
+                                    title: '中转站',
+                                    align: 'center',
+                                    colspan: 1,
+                                    rowspan: 2
+                                },
+                                {
+                                    align: 'center',
+                                    title: '第二车次',
+                                    colspan: 7
+                                }, {
+                                    field: 'sumDistance',
+                                    title: '总里程',
+                                    align: 'center',
+                                    colspan: 1,
+                                    rowspan: 2
+                                }
+                            ],
                             [ //表头
                                 {
-                                    field: 'number',
+                                    field: 'firstNumber',
                                     title: '车次',
-                                    width: '6%',
-                                    fixed: 'left',
+                                    width: '6.4%',
                                     align: 'center'
                                 }, {
-                                    field: 'start',
+                                    field: 'startStation',
                                     title: '出发站',
-                                    width: '6%',
+                                    width: '6.4%',
                                     align: 'center'
                                 }, {
-                                    field: 'end',
-                                    title: '终点站',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'specialSeat',
-                                    title: '特等座',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'firstSeat',
-                                    title: '一等座',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'secondSeat',
-                                    title: '二等座',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'softSeat',
-                                    title: '软座',
+                                    field: 'firstFirst',
+                                    title: '一等',
                                     width: '5%',
                                     align: 'center'
                                 }, {
-                                    field: 'hardSeat',
-                                    title: '硬座',
+                                    field: 'firstSecond',
+                                    title: '二等',
                                     width: '5%',
                                     align: 'center'
                                 }, {
-                                    field: 'noSeat',
-                                    title: '无座',
+                                    field: 'firstBusiness',
+                                    title: '商务',
                                     width: '5%',
                                     align: 'center'
                                 }, {
-                                    field: 'highSleeper',
-                                    title: '高级软卧',
-                                    width: '8%',
-                                    align: 'center'
-                                }, {
-                                    field: 'softSleeper',
-                                    title: '软卧',
-                                    width: '5%',
-                                    align: 'center'
-                                }, {
-                                    field: 'hardSleeper',
-                                    title: '硬卧',
-                                    width: '5%',
-                                    align: 'center'
-                                }, {
-                                    field: 'money',
-                                    title: '价格',
-                                    width: '6%',
-                                    sort: true,
-                                    align: 'center'
-                                }, {
-                                    field: 'startTime',
+                                    field: 'firstStart',
                                     title: '出发时间',
                                     width: '8%',
-                                    sort: true,
-                                    align: 'center'
+                                    align: 'center',
+                                    sort: true
                                 }, {
-                                    field: 'endTime',
+                                    field: 'firstEnd',
                                     title: '到达时间',
                                     width: '8%',
-                                    sort: true,
+                                    align: 'center',
+                                    sort: true
+                                }, {
+                                    field: 'secondNumber',
+                                    title: '车次',
+                                    width: '6.4%',
                                     align: 'center'
                                 }, {
-                                    field: 'timeDifference',
-                                    title: '历时',
-                                    width: '8%',
-                                    sort: true,
+                                    field: 'endStation',
+                                    title: '目的站',
+                                    width: '6.4%',
                                     align: 'center'
+                                }, {
+                                    field: 'secondFirst',
+                                    title: '一等',
+                                    width: '5%',
+                                    align: 'center'
+                                }, {
+                                    field: 'secondSecond',
+                                    title: '二等',
+                                    width: '5%',
+                                    align: 'center'
+                                }, {
+                                    field: 'secondBusiness',
+                                    title: '商务',
+                                    width: '5%',
+                                    align: 'center'
+                                }, {
+                                    field: 'secondStart',
+                                    title: '出发时间',
+                                    width: '8%',
+                                    align: 'center',
+                                    sort: true
+                                }, {
+                                    field: 'secondEnd',
+                                    title: '到达时间',
+                                    width: '8%',
+                                    align: 'center',
+                                    sort: true
                                 }
+
                             ]
                         ],
                         data: trainInfo //数据接口
@@ -281,13 +300,15 @@ function nearestFunc(startPos, endPos) {
 // 最低费用
 function cheapeastFunc(startPos, endPos) {
     $.ajax({
-        url: 'url',
+        url: 'http://e.hduzjh.cn/QueryTickets/changetrainquery',
         data: {
-            startPos: startPos,
-            endPos: endPos,
+            startStation: startPos,
+            endStation: endPos,
+            changeStation: '',
+            order: 'money'
         },
         success: function (ret) {
-            if (ret.message === 200) {
+            if (ret.status === 200) {
                 var data = ret.data;
                 // 数据处理展示
                 layui.use('table', function () {
@@ -295,9 +316,12 @@ function cheapeastFunc(startPos, endPos) {
                     //第一个实例
                     var trainInfo = data;
                     for (i = 0; i < trainInfo.length; i++) {
-                        trainInfo[i].startTime = changeTime(trainInfo[i].startTime);
-                        trainInfo[i].endTime = changeTime(trainInfo[i].endTime);
-                        trainInfo[i].timeDifference = changeTime(trainInfo[i].timeDifference);
+                        trainInfo[i].firstStart = changeTime(trainInfo[i].firstStart);
+                        trainInfo[i].firstEnd = changeTime(trainInfo[i].firstEnd);
+                        trainInfo[i].secondStart = changeTime(trainInfo[i].secondStart);
+                        trainInfo[i].secondEnd = changeTime(trainInfo[i].secondEnd);
+                        trainInfo[i].firstTimeDifference = changeTime(trainInfo[i].firstTimeDifference);
+                        trainInfo[i].secondTimeDifference = changeTime(trainInfo[i].secondTimeDifference);
                     }
                     table.render({
                         elem: '#normalSearch',
@@ -305,93 +329,106 @@ function cheapeastFunc(startPos, endPos) {
                         page: true //开启分页
                             ,
                         cols: [
+                            [{
+                                    align: 'center',
+                                    title: '第一车次',
+                                    colspan: 7
+                                }, {
+                                    field: 'changeStation',
+                                    title: '中转站',
+                                    align: 'center',
+                                    colspan: 1,
+                                    rowspan: 2
+                                },
+                                {
+                                    align: 'center',
+                                    title: '第二车次',
+                                    colspan: 7
+                                }, {
+                                    field: 'sumMoney',
+                                    title: '总费用',
+                                    align: 'center',
+                                    colspan: 1,
+                                    rowspan: 2
+                                }
+                            ],
                             [ //表头
                                 {
-                                    field: 'number',
+                                    field: 'firstNumber',
                                     title: '车次',
-                                    width: '6%',
-                                    fixed: 'left',
+                                    width: '6.4%',
                                     align: 'center'
                                 }, {
-                                    field: 'start',
+                                    field: 'startStation',
                                     title: '出发站',
-                                    width: '6%',
+                                    width: '6.4%',
                                     align: 'center'
                                 }, {
-                                    field: 'end',
-                                    title: '终点站',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'specialSeat',
-                                    title: '特等座',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'firstSeat',
-                                    title: '一等座',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'secondSeat',
-                                    title: '二等座',
-                                    width: '6%',
-                                    align: 'center'
-                                }, {
-                                    field: 'softSeat',
-                                    title: '软座',
+                                    field: 'firstFirst',
+                                    title: '一等',
                                     width: '5%',
                                     align: 'center'
                                 }, {
-                                    field: 'hardSeat',
-                                    title: '硬座',
+                                    field: 'firstSecond',
+                                    title: '二等',
                                     width: '5%',
                                     align: 'center'
                                 }, {
-                                    field: 'noSeat',
-                                    title: '无座',
+                                    field: 'firstBusiness',
+                                    title: '商务',
                                     width: '5%',
                                     align: 'center'
                                 }, {
-                                    field: 'highSleeper',
-                                    title: '高级软卧',
-                                    width: '8%',
-                                    align: 'center'
-                                }, {
-                                    field: 'softSleeper',
-                                    title: '软卧',
-                                    width: '5%',
-                                    align: 'center'
-                                }, {
-                                    field: 'hardSleeper',
-                                    title: '硬卧',
-                                    width: '5%',
-                                    align: 'center'
-                                }, {
-                                    field: 'money',
-                                    title: '价格',
-                                    width: '6%',
-                                    sort: true,
-                                    align: 'center'
-                                }, {
-                                    field: 'startTime',
+                                    field: 'firstStart',
                                     title: '出发时间',
                                     width: '8%',
-                                    sort: true,
-                                    align: 'center'
+                                    align: 'center',
+                                    sort: true
                                 }, {
-                                    field: 'endTime',
+                                    field: 'firstEnd',
                                     title: '到达时间',
                                     width: '8%',
-                                    sort: true,
+                                    align: 'center',
+                                    sort: true
+                                }, {
+                                    field: 'secondNumber',
+                                    title: '车次',
+                                    width: '6.4%',
                                     align: 'center'
                                 }, {
-                                    field: 'timeDifference',
-                                    title: '历时',
-                                    width: '8%',
-                                    sort: true,
+                                    field: 'endStation',
+                                    title: '目的站',
+                                    width: '6.4%',
                                     align: 'center'
+                                }, {
+                                    field: 'secondFirst',
+                                    title: '一等',
+                                    width: '5%',
+                                    align: 'center'
+                                }, {
+                                    field: 'secondSecond',
+                                    title: '二等',
+                                    width: '5%',
+                                    align: 'center'
+                                }, {
+                                    field: 'secondBusiness',
+                                    title: '商务',
+                                    width: '5%',
+                                    align: 'center'
+                                }, {
+                                    field: 'secondStart',
+                                    title: '出发时间',
+                                    width: '8%',
+                                    align: 'center',
+                                    sort: true
+                                }, {
+                                    field: 'secondEnd',
+                                    title: '到达时间',
+                                    width: '8%',
+                                    align: 'center',
+                                    sort: true
                                 }
+
                             ]
                         ],
                         data: trainInfo //数据接口
@@ -569,14 +606,14 @@ function getIt() {
         } else if ($('input:radio[name="proSearch"]:checked').val() === 'zdlj') {
             layui.use('layer', function () {
                 var layer = layui.layer;
-                layer.msg('最短路径');
-                //nearestFunc(startPos,endPos);
+                //layer.msg('最短路径');
+                nearestFunc(startPos, endPos);
             });
         } else if ($('input:radio[name="proSearch"]:checked').val() === 'zdfy') {
             layui.use('layer', function () {
                 var layer = layui.layer;
-                layer.msg('最低费用');
-                //cheapeastFunc(startPos,endPos);
+                //layer.msg('最低费用');
+                cheapeastFunc(startPos, endPos);
             });
         } else if ($('input:radio[name="proSearch"]:checked').val() === 'zzz') {
             var middleStation = $("#middleStations").val();
