@@ -102,28 +102,28 @@
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="./css/adminUser.css">
   <div id="addUserInfo" hidden>
-    <div class="container text-center" style="width:360px">
+    <div class="container text-left" style="width:360px">
       <div class="row">
-        <div class="col-xs-4 text-right">昵称</div>
-        <div class="col-xs-8 text-left">
-          <input type="text" required id="name">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 text-right">账号</div>
-        <div class="col-xs-8 text-left">
-          <input type="text" required id="username">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 text-right">密码</div>
-        <div class="col-xs-8 text-left">
-          <input type="text" required id="password">
+        <div class="col-xs-12">
+          <span>昵称</span>
+          <input type="text" required id="name" class="layui-input">
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button onclick="submitAddUserInfo()" class="btn btn-danger">确认提交</button>
+          <span>账号</span>
+          <input type="text" required id="username" class="layui-input">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <span>密码</span>
+          <input type="text" required id="password" class="layui-input">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 text-right">
+          <button onclick="submitAddUserInfo()" class="layui-btn">确认提交</button>
         </div>
       </div>
     </div>

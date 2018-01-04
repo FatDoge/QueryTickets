@@ -48,7 +48,7 @@ function showInfo() {
                                 width: '20%',
                                 sort: false,
                                 align: 'center',
-                                edit: 'text'
+                                edit: 'text',
                             }, {
                                 field: 'name',
                                 title: '昵称',
@@ -96,7 +96,7 @@ function addUser() {
     layer.open({
         type: 1,
         skin: 'layui-layer-rim', //加上边框
-        area: ['400px', '300px'], //宽高
+        area: ['400px', '400px'], //宽高
         content: $('#addUserInfo'),
         title: '填写新增用户信息'
     });

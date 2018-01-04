@@ -1,6 +1,5 @@
 var stations;
 var distance;
-
 function stationInfo() {
     $.ajax({
         url: 'http://e.hduzjh.cn/QueryTickets/station/getall',
@@ -35,6 +34,6 @@ var app = new Vue({
         station: stations,
         check: false,
         checkMiddle: '',
-        distance: distance
-    },
+        distance: distance,
+    }
 })
