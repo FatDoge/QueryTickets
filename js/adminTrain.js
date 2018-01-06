@@ -8,7 +8,7 @@ function deleteData(data) {
         success: function (result) {
             layer.msg(result.message)
         },
-        error:function(){
+        error: function () {
             layer.msg('服务端错误')
         }
     })
@@ -58,7 +58,7 @@ function showInfo() {
                                 width: '9%',
                                 align: 'center',
                                 edit: 'text'
-                            }, 
+                            },
                             {
                                 field: 'softSeat',
                                 title: '软座',
@@ -79,7 +79,7 @@ function showInfo() {
                                 width: '9%',
                                 align: 'center',
                                 edit: 'text'
-                            },{
+                            }, {
                                 field: 'highSleeper',
                                 title: '高卧',
                                 width: '9%',
@@ -99,7 +99,7 @@ function showInfo() {
                                 width: '9%',
                                 align: 'center',
                                 edit: 'text'
-                            },{
+                            }, {
                                 fixed: 'right',
                                 width: '9%',
                                 align: 'center',
@@ -157,23 +157,23 @@ function submitAddTrainInfo() {
     var highSleeper = $('#highSleeper').val();
     var softSleeper = $('#softSleeper').val();
     var hardSleeper = $('#hardSleeper').val();
-    if (!(number&&specialSeat&&firstSeat&&secondSeat&&softSeat&&hardSeat&&noSeat&&highSleeper&&softSleeper&&hardSleeper)) {
+    if (!(number && specialSeat && firstSeat && secondSeat && softSeat && hardSeat && noSeat && highSleeper && softSleeper && hardSleeper)) {
         layer.msg('请填写完整信息')
         return false;
     } else {
         $.ajax({
             url: 'http://e.hduzjh.cn/QueryTickets/train/add',
             data: {
-                number:number,
-                specialSeat:specialSeat,
-                firstSeat:firstSeat,
-                secondSeat:secondSeat,
-                softSeat:softSeat,
-                hardSeat:hardSeat,
-                noSeat:noSeat,
-                highSleeper:highSleeper,
-                softSleeper:softSleeper,
-                hardSleeper:hardSleeper
+                number: number,
+                specialSeat: specialSeat,
+                firstSeat: firstSeat,
+                secondSeat: secondSeat,
+                softSeat: softSeat,
+                hardSeat: hardSeat,
+                noSeat: noSeat,
+                highSleeper: highSleeper,
+                softSleeper: softSleeper,
+                hardSleeper: hardSleeper
             },
             success: function (result) {
                 if (result.status === 200) {
@@ -203,17 +203,17 @@ function submitChangeTrainInfo(data) {
     $.ajax({
         url: 'http://e.hduzjh.cn/QueryTickets/train/update',
         data: {
-            id:data.id,
-            number:data.number,
-                specialSeat:data.specialSeat,
-                firstSeat:data.firstSeat,
-                secondSeat:data.secondSeat,
-                softSeat:data.softSeat,
-                hardSeat:data.hardSeat,
-                noSeat:data.noSeat,
-                highSleeper:data.highSleeper,
-                softSleeper:data.softSleeper,
-                hardSleeper:data.hardSleeper
+            id: data.id,
+            number: data.number,
+            specialSeat: data.specialSeat,
+            firstSeat: data.firstSeat,
+            secondSeat: data.secondSeat,
+            softSeat: data.softSeat,
+            hardSeat: data.hardSeat,
+            noSeat: data.noSeat,
+            highSleeper: data.highSleeper,
+            softSleeper: data.softSleeper,
+            hardSleeper: data.hardSleeper
         },
         success: function (result) {
             if (result.status === 200) {

@@ -22,6 +22,7 @@ function login() {
 				} else {
 					//插入数据并跳转
 					localStorage.setItem('queryTickets_id', result.data.name);
+					localStorage.setItem('queryTickets_power', result.data.type);
 					switch (result.data.type) {
 						case 0:
 							window.location = './home.html';
